@@ -1,6 +1,10 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /*
@@ -21,7 +25,7 @@ public class login extends javax.swing.JFrame {
     Statement  stmt = null;
     ResultSet rs = null; 
     
-    public login() {
+    public login() throws SQLException {
         super("Login");
         initComponents();
         conn = databaseConnection.connection();
@@ -41,8 +45,8 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         mail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        login = new javax.swing.JButton();
+        cancle = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -59,17 +63,17 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancle");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancle.setText("Cancle");
+        cancle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancleActionPerformed(evt);
             }
         });
 
@@ -91,9 +95,9 @@ public class login extends javax.swing.JFrame {
                         .addGap(47, 47, 47))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButton1)
+                        .addComponent(login)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(cancle)
                         .addGap(80, 80, 80))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,8 +113,8 @@ public class login extends javax.swing.JFrame {
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(login)
+                    .addComponent(cancle))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -135,14 +139,33 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            
+            stmt = conn.createStatement();
+            String userEmail = mail.getText();
+            String userPass = password.getText();
+            
+            String sql = "SELECT * FROM admin WHERE mail='"+userEmail+"' && password = '"+userPass+"'";
+            
+            rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                setVisible(false);
+                home object = new home();
+                object.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Password or mail is invalid");
+            }
+            
+            
+        }catch(Exception e){ JOptionPane.showMessageDialog(null,e);}
+    }//GEN-LAST:event_loginActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cancleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,17 +197,21 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+                try {
+                    new login().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton login;
     private javax.swing.JTextField mail;
     private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
