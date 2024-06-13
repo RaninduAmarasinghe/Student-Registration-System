@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -88,6 +89,11 @@ public class addStudent extends javax.swing.JFrame {
         blood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB", "O+" }));
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Back");
 
@@ -115,11 +121,11 @@ public class addStudent extends javax.swing.JFrame {
                     .addComponent(blood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(162, Short.MAX_VALUE)
+                .addContainerGap(163, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(129, 129, 129)
                 .addComponent(jButton3)
-                .addGap(158, 158, 158))
+                .addGap(157, 157, 157))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,11 +154,11 @@ public class addStudent extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(stdclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
-                .addGap(33, 33, 33))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -237,6 +243,27 @@ public class addStudent extends javax.swing.JFrame {
         about object = new about();
         object.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            stmt = conn.createStatement();
+            String stdName = name.getText();
+            String stdBlood = (String) blood.getSelectedItem();
+            String stdFather = fname.getText();
+            String stdCity = city.getText();
+            String stdPhone = phone.getText();
+            int stdClass = Integer.parseInt(stdclass.getText());
+            
+            String sql = "INSERT INTO STUDENT(stdName, stdFatherName, stdBlood, stdCity, stdPhone, class) VALUES('"+stdName+"', '"+stdFather+"', '"+stdBlood+"', '"+stdCity+"', '"+stdPhone+"', '"+stdClass+"')";
+            
+            stmt.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null,"Data is successfuly inserted");
+                    
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
