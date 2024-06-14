@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -19,8 +20,33 @@ public class showAdmin extends javax.swing.JFrame {
     /**
      * Creates new form showAdmin
      */
+    Connection conn = null;
+    Statement stmt = null;
+    ResultSet rs = null;
+    
     public showAdmin() {
+        super("Admin");
         initComponents();
+         conn = databaseConnection.connection();
+        showRecord();
+    }
+    
+    public void showRecord(){
+    
+        try{
+         stmt = conn.createStatement();
+            String sql = "SELECT * FROM admin";
+            ResultSet res = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));
+            
+        }catch (Exception e){
+            
+            JOptionPane.showMessageDialog(null, e);
+            
+            
+            
+        }
+    
     }
 
     /**

@@ -92,6 +92,11 @@ public class home extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Downloads/img/project Image/configuration1.png")); // NOI18N
 
         jButton6.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Downloads/img/project Image/showAdmin.png")); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Add Admin");
 
@@ -277,6 +282,18 @@ public class home extends javax.swing.JFrame {
                addAdmin object = new addAdmin();
                object.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        showAdmin object = null;
+        try {
+            object = new showAdmin();
+        } catch (SQLException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        object.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
