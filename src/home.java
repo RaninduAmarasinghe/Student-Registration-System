@@ -90,6 +90,11 @@ public class home extends javax.swing.JFrame {
         });
 
         jButton5.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Downloads/img/project Image/configuration1.png")); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Downloads/img/project Image/showAdmin.png")); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -287,13 +292,16 @@ public class home extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         showAdmin object = null;
-        try {
-            object = new showAdmin();
-        } catch (SQLException ex) {
-            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        object = new showAdmin();
         object.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+         setVisible(false);
+        admin object = new admin();
+        object.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

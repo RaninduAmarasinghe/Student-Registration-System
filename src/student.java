@@ -366,7 +366,7 @@ public class student extends javax.swing.JFrame {
        try{
            stmt = conn.createStatement();
            int stdId = Integer.parseInt(id.getText());
-           String sql = "DELETE FROM student WHERE id + '"+stdId+"'";
+           String sql = "DELETE FROM student WHERE id = '"+stdId+"'";
            stmt.executeUpdate(sql);
            
              setVisible(false);
