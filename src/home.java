@@ -63,6 +63,11 @@ public class home extends javax.swing.JFrame {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Downloads/img/project Image/configuration.png")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Downloads/img/project Image/showStudent.png")); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +78,7 @@ public class home extends javax.swing.JFrame {
 
         jLabel1.setText("Add Student");
 
-        jLabel2.setText("Operation");
+        jLabel2.setText("Student Operation");
 
         jLabel3.setText("Show Students");
 
@@ -110,7 +115,7 @@ public class home extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addGap(115, 115, 115)))
+                        .addGap(86, 86, 86)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -253,6 +258,13 @@ public class home extends javax.swing.JFrame {
                 showStudent object = new showStudent();
                 object.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+                setVisible(false);
+                student object = new student();
+                object.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
