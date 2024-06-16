@@ -65,7 +65,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        login.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Documents/Projects Java/student/img for project/Login.png")); // NOI18N
+        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login.png"))); // NOI18N
         login.setText("Login");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +73,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        cancle.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Documents/Projects Java/student/img for project/exit.png")); // NOI18N
+        cancle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/exit.png"))); // NOI18N
         cancle.setText("Exit");
         cancle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +81,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/raninduamarasinghe/Documents/Projects Java/student/img for project/student.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/student_821431.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,6 +111,9 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancle, login});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -129,6 +132,8 @@ public class login extends javax.swing.JFrame {
                     .addComponent(cancle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cancle, login});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
