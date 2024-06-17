@@ -247,9 +247,24 @@ public class addStudent extends javax.swing.JFrame {
             stmt = conn.createStatement();
             String stdName = name.getText();
             String stdPhone = phone.getText();
-            String stdIdp = "";
+            String stdImage = idp.getText();
             
-            String sql = "INSERT INTO STUDENT(stdName, stdPhone, stdIdp) VALUES('"+stdName+"','"+stdPhone+"', '"+stdIdp+"' )";
+        File imageFile = new File(filename);
+        FileInputStream fis = new FileInputStream(imageFile);
+        byte[] imageBytes = new byte[(int) imageFile.length()];
+        fis.read(imageBytes);
+        fis.close();
+        
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : imageBytes) {
+            hexString.append(String.format("%02x", b));
+        
+        }
+        
+            //String sql = "INSERT INTO STUDENT(stdName, stdPhone, stdIdp) VALUES('"+stdName+"','"+stdPhone+"', '"+stdIdp+"' )";
+            
+              String sql = "INSERT INTO STUDENT(stdName, stdPhone, stdImage) VALUES('" 
+                      + stdName + "', '" + stdPhone + "', x'" + hexString.toString() + "')";
             
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data is successfuly inserted");
@@ -273,25 +288,7 @@ public class addStudent extends javax.swing.JFrame {
         File f = chooser.getSelectedFile();
         idp.setIcon(new ImageIcon(f.toString()));
         filename = f.getAbsolutePath();
-        idp.setText(filename);
-        
-        try{
-            File image = new File(filename);
-            FileInputStream fis = new FileInputStream(image);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            for(int readNum; (readNum=fis.read(buf)) != -1;){
-                bos.write(buf,0 , readNum);
-            }
-            photo = bos.toByteArray();
-        }catch(Exception e){
-            
-            JOptionPane.showMessageDialog(null,e);
-            
-        }
-        
-        
-        
+        idp.setText(filename);   
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

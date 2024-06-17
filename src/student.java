@@ -320,24 +320,6 @@ public class student extends javax.swing.JFrame {
                 name.setText(rs.getString("stdName"));
                 phone.setText(rs.getString("stdPhone"));
                 
-                String stdIdp = rs.getString("stdIdp");
-            if (stdIdp != null && !stdIdp.isEmpty()) {
-                byte[] imageBytes = Base64.getDecoder().decode(stdIdp);
-                ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
-                BufferedImage bImage = ImageIO.read(bis);
-                
-                if (bImage != null) {
-                    ImageIcon icon = new ImageIcon(bImage);
-                    idp.setIcon(icon);
-                    idp.setText(""); // Clear the text
-                } else {
-                    idp.setIcon(null);
-                    idp.setText("Invalid photo data");
-                }
-            } else {
-                idp.setIcon(null);
-                idp.setText("No photo available");
-            }
                
             }else{
                 JOptionPane.showMessageDialog(null,"Record Not found");
