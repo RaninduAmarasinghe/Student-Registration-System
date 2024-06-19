@@ -247,7 +247,7 @@ public class addStudent extends javax.swing.JFrame {
             stmt = conn.createStatement();
             String stdName = name.getText();
             String stdPhone = phone.getText();
-            String stdImage = idp.getText();
+            
             
         File imageFile = new File(filename);
         FileInputStream fis = new FileInputStream(imageFile);
@@ -264,7 +264,7 @@ public class addStudent extends javax.swing.JFrame {
             //String sql = "INSERT INTO STUDENT(stdName, stdPhone, stdIdp) VALUES('"+stdName+"','"+stdPhone+"', '"+stdIdp+"' )";
             
               String sql = "INSERT INTO STUDENT(stdName, stdPhone, stdImage) VALUES('" 
-                      + stdName + "', '" + stdPhone + "', x'" + hexString.toString() + "')";
+                      + stdName + "', '" + stdPhone + "', '" + hexString.toString() + "')";
             
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data is successfuly inserted");
@@ -288,7 +288,8 @@ public class addStudent extends javax.swing.JFrame {
         File f = chooser.getSelectedFile();
         idp.setIcon(new ImageIcon(f.toString()));
         filename = f.getAbsolutePath();
-        idp.setText(filename);   
+        idp.setText(filename); 
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

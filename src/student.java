@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -320,6 +321,18 @@ public class student extends javax.swing.JFrame {
                 name.setText(rs.getString("stdName"));
                 phone.setText(rs.getString("stdPhone"));
                 
+                InputStream imageStream = rs.getBinaryStream("stdImage");
+            if (imageStream != null) {
+                BufferedImage image = ImageIO.read(imageStream);
+                if (image != null) {
+                    ImageIcon imageIcon = new ImageIcon(image);
+                    idp.setIcon(imageIcon);  // Assume you have a JLabel named imageLabel
+                }
+            } else {
+                idp.setIcon(null); // If no image, clear the label
+            }
+  
+       
                
             }else{
                 JOptionPane.showMessageDialog(null,"Record Not found");
